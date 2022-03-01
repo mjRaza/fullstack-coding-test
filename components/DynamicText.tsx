@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
-const DynamicText = () => {
+type Props={
+  childFunc: React.MutableRefObject<any>
+}
+const DynamicText:React.FC<Props> = ({childFunc}) => {
+
+  React.useEffect(() => {
+    childFunc.current = changeValue
+  }, [childFunc])
+
   const [value, setValue] = useState("Random Text");
 
   const changeValue = (newValue) => {

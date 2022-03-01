@@ -1,11 +1,13 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import DynamicText from "../components/DynamicText";
+import React,{useRef} from "react";
 import { Flex, Input } from "@chakra-ui/react";
+import DynamicText from "components/DynamicText";
 
 const Home = () => {
+  const childFunc = useRef(null)
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    childFunc.current(e.target.value)
   };
 
   return (
@@ -16,9 +18,10 @@ const Home = () => {
       </Head>
 
       <Flex padding="5rem 0"flexDirection ="column" justifyContent="center" alignItems="center">
-        <DynamicText />
+        <DynamicText childFunc={childFunc}/>
         <Input onChange={onChange} placeholder="Enter" variant="filled" mb={3}/>
       </Flex>
+      
     </Flex>
   );
 };
