@@ -1,9 +1,15 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from "@chakra-ui/react";
+import { AuthProvider } from "src/hooks/auth";
+import AuthStateChanged from "src/layout/authState";
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  )
+    <AuthProvider>
+      <AuthStateChanged>
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </AuthStateChanged>
+    </AuthProvider>
+  );
 }
-export default MyApp
+export default MyApp;
