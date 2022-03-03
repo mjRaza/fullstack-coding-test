@@ -90,7 +90,7 @@ const blog: React.FC<Props> = ({ Allblogs }) => {
 
             <FormControl mt={4}>
               <FormLabel>Description</FormLabel>
-              <Input onChange={(e) => setBody(e.target.value)} placeholder="Image Url" />
+              <Input onChange={(e) => setBody(e.target.value)} placeholder="Description" />
             </FormControl>
           </ModalBody>
 
