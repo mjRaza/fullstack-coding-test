@@ -25,21 +25,21 @@ import useAuth from "src/hooks/auth";
 export type Blog = {
   createdAt: any;
   id: string;
-  body: string;
+  body?: string;
   imageUrl: string;
   postedBy: string;
   title: string;
 };
 export type Props = {
-  Allblogs: Blog[];
+  Allblogs: Array<Blog>;
 };
 const blog: React.FC<Props> = ({ Allblogs }) => {
+  console.log({Allblogs})
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
 
   const createBlog = () => {

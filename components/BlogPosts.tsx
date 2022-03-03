@@ -2,19 +2,13 @@ import {
   Box,
   Modal,
   Button,
-  Flex,
   FormControl,
-  FormLabel,
-  Heading,
-  Input,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Spacer,
-  useToast,
   useDisclosure,
   Image,
   Text,
@@ -58,6 +52,7 @@ const BlogPosts: React.FC<Props> = ({ Allblogs }) => {
       {showModal()}
       {Allblogs.map((blog) => (
         <Box
+        key={blog.id}
         mt={3}
           borderWidth="1px"
           borderRadius="lg"
