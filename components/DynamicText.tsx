@@ -1,13 +1,13 @@
+import { Flex, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-type Props={
-  childFunc: React.MutableRefObject<any>
-}
-const DynamicText:React.FC<Props> = ({childFunc}) => {
-
+type Props = {
+  childFunc: React.MutableRefObject<any>;
+};
+const DynamicText: React.FC<Props> = ({ childFunc }) => {
   React.useEffect(() => {
-    childFunc.current = changeValue
-  }, [childFunc])
+    childFunc.current = changeValue;
+  }, [childFunc]);
 
   const [value, setValue] = useState("Random Text");
 
@@ -15,7 +15,11 @@ const DynamicText:React.FC<Props> = ({childFunc}) => {
     setValue(newValue);
   };
 
-  return <h1>{value}</h1>;
+  return (
+    <Flex wrap="wrap" maxW="45vw">
+      <Text fontSize="md" isTruncated> {value}</Text>
+    </Flex>
+  );
 };
 
 export default DynamicText;

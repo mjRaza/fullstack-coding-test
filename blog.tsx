@@ -21,17 +21,8 @@ import BlogPosts from "components/BlogPosts";
 import React, { useState } from "react";
 import { db } from "src/config/firebase.config";
 import useAuth from "src/hooks/auth";
-
-export type Blog = {
-  createdAt: any;
-  id: string;
-  body: string;
-  imageUrl: string;
-  postedBy: string;
-  title: string;
-};
 export type Props = {
-  Allblogs: Blog[];
+  Allblogs: [{ createdAt: any; id: string; imageUrl: string; postedBy: string; title: string }];
 };
 const blog: React.FC<Props> = ({ Allblogs }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,7 +42,7 @@ const blog: React.FC<Props> = ({ Allblogs }) => {
         postedBy: user.uid,
         createdAt: new Date(),
       });
-      onClose();
+      onClose()
       toast({
         title: "Blog created.",
         description: "Blog created sucessfully!",
@@ -72,7 +63,7 @@ const blog: React.FC<Props> = ({ Allblogs }) => {
 
   const showModal = () => {
     return (
-      <Modal isOpen={isOpen} onClose={onClose} >
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create blog</ModalHeader>
@@ -105,17 +96,17 @@ const blog: React.FC<Props> = ({ Allblogs }) => {
     );
   };
   return (
-    <Flex h="100vh" direction="column" align="center">
+    <Flex h="100vh" direction="column">
       <Flex w="100%" bg="lightgreen" p={4} align="center">
         <Box color="white">
           <Heading size="md">Blogs</Heading>
         </Box>
         <Spacer />
-        <Box color="white" textColor="black">
+        <Box color="white">
           <Button onClick={onOpen}>Create</Button>
         </Box>
       </Flex>
-      <Flex direction="column" mt={2}>
+      <Flex>
         <BlogPosts Allblogs={Allblogs} />
       </Flex>
 
@@ -135,7 +126,7 @@ export async function getServerSideProps(context) {
   });
 
   return {
-    props: { Allblogs }, 
+    props: { Allblogs }, // will be passed to the page component as props
   };
 }
 

@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react'
 import React from 'react'
 
   type Props={
@@ -5,7 +6,7 @@ import React from 'react'
  }
 const ErrorMsg :React.FC<Props>= ({error}) => {
   return (
-   <>{!!error?<small style={{color:'red'}}>{error}</small>:null}</>
+   <>{!!error?<Text style={{color:'red'}}>{error}</Text>:null}</>
   )
 }
 

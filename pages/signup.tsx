@@ -1,8 +1,9 @@
-import { Button, Flex, Input } from "@chakra-ui/react";
+import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import ErrorMsg from "components/ErrorMsg";
 import React, { useState } from "react";
 import useAuth from "src/hooks/auth";
 import { withPublic } from "src/hooks/route";
+import Link from 'next/link'
 
 const signup = () => {
 
@@ -33,11 +34,20 @@ console.log({errorFromFb})
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
       <Flex
-        padding="5rem 0"
+        w="35vw"
+        h="45vh"
+        borderRadius={25}
+        padding={5}
         flexDirection="column"
-        justifyContent="center"
+        justifyContent='space-around'
         alignItems="center"
         backgroundColor="#c8e7f5">
+
+        <Text as="b" fontSize='5xl' >Sign Up</Text>
+
+        <Flex direction="column"  w="25vw">
+
+
         <Input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -65,11 +75,16 @@ console.log({errorFromFb})
         <Button onClick={signUpWithEmailAndPassword} color="success">
           Sign up
         </Button>
-        <small>
-          <p>Already have an account?</p>
-        </small>
+        <Text textAlign="center"  >
+        Already have an account?  <Link href="/login">
+          <a  style={{color:'blue'}}>Click here</a>
+        </Link>
+          </Text>
+
         <ErrorMsg error={error || errorFromFb.message } />
       </Flex>
+</Flex>
+
     </Flex>
   );
 };
